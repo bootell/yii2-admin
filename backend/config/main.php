@@ -8,6 +8,8 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => '后台管理',
+    'language' => 'zh-CN',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -15,11 +17,16 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'parsers' => [
+                'application/json' => yii\web\JsonParser::class,
+                'text/json' => yii\web\JsonParser::class,
+            ],
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => backend\models\auth\AdminUserIdentity::class,
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
+            'loginUrl' => ['auth/login/index'],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -28,7 +35,7 @@ return [
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                [
+                'app' => [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
@@ -37,14 +44,24 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        'authManager' => [
+            'class' => backend\components\RbacAuthManager::class,
+            'permissions' => require(__DIR__ . '/rbac.php'),
+        ],
+        'assetManager' => [
+            'appendTimestamp' => true,
+            'bundles' => [
+                'dmstr\web\AdminLteAsset' => [
+                    'skin' => 'skin-blue',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
