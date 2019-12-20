@@ -67,17 +67,15 @@ class Alert extends Widget
     /**
      * @inheritdoc
      */
-    public function init()
+    public function run()
     {
-        parent::init();
-
         $session = \Yii::$app->getSession();
         $flashes = $session->getAllFlashes();
 
         foreach ($flashes as $type => $data) {
-            $data = (array)$data;
             // 右上角悬浮通知
             if (isset($this->growlTypes[$type])) {
+                $data = (array)$data;
                 $config = array_merge($this->growlOptions, $this->growlTypes[$type]);
 
                 foreach ($data as $message) {
@@ -91,6 +89,7 @@ class Alert extends Widget
             }
             // 顶部通知
             elseif (isset($this->alertTypes[$type])) {
+                $data = (array)$data;
                 foreach ($data as $message) {
 
                     $this->options['class'] = $this->alertTypes[$type]['class'];
@@ -106,6 +105,8 @@ class Alert extends Widget
                 if ($this->isAjaxRemoveFlash && !\Yii::$app->request->isAjax) {
                     $session->removeFlash($type);
                 }
+            } else {
+                $session->setFlash($type, $data);
             }
         }
     }

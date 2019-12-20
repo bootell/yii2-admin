@@ -116,6 +116,9 @@ class AdminRolePermission extends \yii\db\ActiveRecord
      */
     public static function updateAllItems($data)
     {
+        if (empty($data)) {
+            return false;
+        }
         $add = [];
         $del = ['or'];
         foreach ($data as $role_id => $permission) {

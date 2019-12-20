@@ -56,7 +56,7 @@ class ProfileController extends BaseController
                 Yii::$app->user->logout();
                 return $this->successAjax();
             } else {
-                return $this->failedAjax(['error' => $model]);
+                return $this->failedAjax([], $model->getOneError());
             }
         }
         return $this->render('reset', [

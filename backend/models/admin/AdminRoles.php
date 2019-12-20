@@ -3,6 +3,7 @@
 namespace backend\models\admin;
 
 use backend\models\auth\AdminRolePermission;
+use common\models\ModelErrorTrait;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -19,6 +20,8 @@ use yii\helpers\ArrayHelper;
  */
 class AdminRoles extends \yii\db\ActiveRecord
 {
+    use ModelErrorTrait;
+
     /**
      * @inheritdoc
      */

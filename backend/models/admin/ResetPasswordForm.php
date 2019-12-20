@@ -2,6 +2,7 @@
 
 namespace backend\models\admin;
 
+use common\models\ModelErrorTrait;
 use Yii;
 use yii\base\Model;
 
@@ -10,6 +11,8 @@ use yii\base\Model;
  */
 class ResetPasswordForm extends Model
 {
+    use ModelErrorTrait;
+
     public $uid;
     public $password;
     public $confirm_password;

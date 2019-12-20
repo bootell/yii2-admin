@@ -2,6 +2,7 @@
 
 namespace backend\models\admin;
 
+use common\models\ModelErrorTrait;
 use Yii;
 
 /**
@@ -24,6 +25,8 @@ use Yii;
  */
 class AdminUsers extends \yii\db\ActiveRecord
 {
+    use ModelErrorTrait;
+
     const ADMIN_USER_ENABLE = 1;
     const ADMIN_USER_DISABLE = 2;
     const ADMIN_USER_DELETE = 3;

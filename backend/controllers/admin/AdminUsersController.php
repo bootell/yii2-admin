@@ -93,10 +93,10 @@ class AdminUsersController extends BaseController
                 $this->successFlash("编辑账号 <b>{$model->username}</b> 成功");
                 return $this->successAjax();
             } else {
-                return $this->failedAjax(['error' => $model]);
+                return $this->failedAjax([], $model->getOneError());
             }
         }
-        return $this->failedAjax();
+        return $this->failedAjax([], '用户不存在');
     }
 
     /**
@@ -110,7 +110,7 @@ class AdminUsersController extends BaseController
             $this->successFlash("删除账号 <b>{$model->username}</b> 成功");
             return $this->successAjax();
         }
-        return $this->failedAjax(['error' => $model]);
+        return $this->failedAjax([], $model->getOneError());
     }
 
     /**
@@ -125,10 +125,10 @@ class AdminUsersController extends BaseController
                 $this->successFlash("修改密码并重置验证 <b>{$user->username}</b> 成功");
                 return $this->successAjax();
             } else {
-                return $this->failedAjax(['error' => $model]);
+                return $this->failedAjax([], $model->getOneError());
             }
         }
-        return $this->failedAjax();
+        return $this->failedAjax([], '参数错误');
     }
 
     /**

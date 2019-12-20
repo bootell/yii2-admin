@@ -8,7 +8,6 @@ use \backend\components\widgets\LeftMenu;
 
     <section class="sidebar">
         <?= LeftMenu::widget([
-            'options' => ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'],
             'items' => [
                 [
                     'label' => '后台管理',

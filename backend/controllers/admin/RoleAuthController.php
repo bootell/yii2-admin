@@ -23,7 +23,7 @@ class RoleAuthController extends BaseController
                 $this->successFlash('修改角色权限成功');
                 return $this->successAjax();
             } else {
-                return $this->failedAjax();
+                return $this->failedAjax([], '保存失败');
             }
         }
 

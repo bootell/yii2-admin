@@ -233,7 +233,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                         });
                     } else {
-                        swal({title: "失败", text: res.data.error, type: "error"});
+                        swal({title: "失败", text: res.message, type: "error"});
                     }
                 }
             })
@@ -271,7 +271,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         }
                     });
                 } else {
-                    swal({title: "失败", text: res.data.error, type: "error"});
+                    swal({title: "失败", text: res.message, type: "error"});
                 }
             }
         })
@@ -311,7 +311,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             }
                         });
                     } else {
-                        swal({title: "失败", text: res.data.error, type: "error"});
+                        swal({title: "失败", text: res.message, type: "error"});
                     }
                 }
             })

@@ -80,7 +80,7 @@ class AdminRolesController extends BaseController
             $this->successFlash("删除角色 <b>{$role_name}</b> 成功");
             return $this->successAjax();
         }
-        return $this->failedAjax(['error' => array_values($model->getFirstErrors())[0]]);
+        return $this->failedAjax([], $model->getOneError());
     }
 
     /**

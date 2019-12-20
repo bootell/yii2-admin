@@ -7,6 +7,8 @@ use yii\helpers\Html;
 
 class LeftMenu extends \dmstr\widgets\Menu
 {
+    public $options = ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'];
+
     /**
      * @inheritdoc
      */

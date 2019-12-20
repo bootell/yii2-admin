@@ -8,6 +8,8 @@ class GridView extends \yii\grid\GridView
 {
     public $buttons;
 
+    public $options = ['class' => 'grid-view dataTables_wrapper'];
+
     /**
      * @inheritdoc
      */
@@ -36,7 +38,7 @@ class GridView extends \yii\grid\GridView
     <div class="col-sm-5">
         {summary}
     </div>
-        <div class="col-sm-7">
+    <div class="col-sm-7">
         {pager}
     </div>
 </div>
