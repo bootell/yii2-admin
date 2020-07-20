@@ -22,6 +22,7 @@ class LoginController extends BaseController
 
     public function init()
     {
+        \yii\web\Controller::init();
         Yii::$app->user->on(User::EVENT_AFTER_LOGIN, [AdminLoginLog::class, 'addLoginEventLog']);
     }
 

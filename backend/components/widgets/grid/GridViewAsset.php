@@ -4,15 +4,15 @@ namespace backend\components\widgets\grid;
 
 class GridViewAsset extends \yii\web\AssetBundle
 {
-    public $sourcePath = '@vendor/almasaeed2010/adminlte/bower_components/datatables.net-bs';
+    public $sourcePath = '@vendor/almasaeed2010/adminlte/plugins/datatables-bs4';
 
     public $css = [
-        'css/dataTables.bootstrap.min.css',
+        'css/dataTables.bootstrap4.css',
     ];
 
     public $js = [];
 
     public $depends = [
-        'dmstr\web\AdminLteAsset',
+        \dmstr\adminlte\web\AdminLteAsset::class,
     ];
 }

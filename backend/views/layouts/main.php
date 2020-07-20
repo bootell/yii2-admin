@@ -1,13 +1,13 @@
 <?php
 
-use dmstr\helpers\AdminLteHelper;
 use yii\helpers\Html;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 \backend\assets\AppAsset::register($this);
-\dmstr\web\AdminLteAsset::register($this);
+\dmstr\adminlte\web\AdminLteAsset::register($this);
+\dmstr\adminlte\web\FontAwesomeAsset::register($this);
 \backend\assets\PaceAsset::register($this);
 
 ?>
@@ -22,7 +22,7 @@ use yii\helpers\Html;
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="hold-transition <?= AdminLteHelper::skinClass() ?> sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <?php $this->beginBody() ?>
 <div class="wrapper">
 
