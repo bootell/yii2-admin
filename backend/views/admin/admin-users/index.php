@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use backend\components\widgets\grid\GridView;
 use yii\helpers\Url;
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use kartik\daterange\DateRangePicker;
 
 /* @var $this yii\web\View */

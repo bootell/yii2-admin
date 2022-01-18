@@ -22,8 +22,8 @@ class AppAsset extends AssetBundle
         'position' => View::POS_BEGIN,
     ];
     public $depends = [
-        \yii\web\YiiAsset::class,
-        \yii\bootstrap4\BootstrapAsset::class,
-        \backend\assets\SweetAlertAsset::class,
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'backend\assets\SweetAlertAsset',
     ];
 }

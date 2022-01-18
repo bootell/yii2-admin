@@ -1,69 +1,68 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap4\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap4\ActiveForm */
+/* @var $form yii\bootstrap\ActiveForm */
 /* @var $model backend\models\auth\LoginForm */
 
 $this->title = '登录';
 
 $fieldOptions1 = [
-    'options' => ['class' => 'input-group mb-3'],
-    'inputTemplate' => "{input}<div class='input-group-append'><div class='input-group-text'><span class='fas fa-envelope'></span></div></div>"
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-envelope form-control-feedback'></span>"
 ];
 
 $fieldOptions2 = [
-    'options' => ['class' => 'input-group mb-3'],
-    'inputTemplate' => "{input}<div class='input-group-append'><div class='input-group-text'><span class='fas fa-lock'></span></div></div>"
+    'options' => ['class' => 'form-group has-feedback'],
+    'inputTemplate' => "{input}<span class='glyphicon glyphicon-lock form-control-feedback'></span>"
 ];
 ?>
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b><?= Yii::$app->name ?></b></a>
+        <a href="#"><?= Yii::$app->name ?></a>
     </div>
     <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg"></p>
+    <div class="login-box-body">
+        <p class="login-box-msg"></p>
 
-            <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
-            <?= $form->field($model, 'username', $fieldOptions1)
-                ->textInput(['placeholder' => $model->getAttributeLabel('username')])
-                ->label(false) ?>
+        <?= $form
+            ->field($model, 'username', $fieldOptions1)
+            ->label(false)
+            ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
 
-            <?= $form->field($model, 'password', $fieldOptions2)
-                ->label(false)
-                ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+        <?= $form
+            ->field($model, 'password', $fieldOptions2)
+            ->label(false)
+            ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
 
-            <?php
-            if ($model->isCaptcha()) {
-                echo $form->field($model, 'captcha')->widget(Captcha::class, [
-                    'captchaAction' => 'auth/login/captcha',
-                    'template' => '<div class="input-group mb-3 has-feedback">{input}<div class="input-group-append"><div class="input-group-text" style="padding: 0;">{image}</div></div>',
-                    'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('captcha')]
-                ])->label(false);
-            }
-            ?>
+        <?php
+        if ($model->isCaptcha()) {
+            echo $form->field($model, 'captcha')->widget(Captcha::class, [
+                'captchaAction' => 'auth/login/captcha',
+                'template' => '<div class="form-group has-feedback input-group">{input}<span class="input-group-addon" style="padding: 0;">{image}</span></div>',
+                'options' => ['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('captcha')]
+            ])->label(false);
+        }
+        ?>
 
-            <div class="row">
-                <div class="col-8">
-                    <?= $form->field($model, 'rememberMe', [
-                        'options' => ['class' => 'input-group'],
-                    ])->checkbox() ?>
-                </div>
-                <!-- /.col -->
-                <div class="col-4">
-                    <?= Html::submitButton('登录', ['class' => 'btn btn-primary btn-block', 'name' => 'login-button']) ?>
-                </div>
-                <!-- /.col -->
+        <div class="row">
+            <div class="col-xs-8">
+                <?= $form->field($model, 'rememberMe')->checkbox() ?>
             </div>
-
-            <?php ActiveForm::end(); ?>
+            <!-- /.col -->
+            <div class="col-xs-4">
+                <?= Html::submitButton('登录', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+            </div>
+            <!-- /.col -->
         </div>
+
+        <?php ActiveForm::end(); ?>
+
     </div>
     <!-- /.login-box-body -->
 </div>

@@ -2,12 +2,13 @@
 
 namespace backend\components\widgets;
 
-use dmstr\adminlte\widgets\Menu;
 use Yii;
 use yii\helpers\Html;
 
-class LeftMenu extends Menu
+class LeftMenu extends \dmstr\widgets\Menu
 {
+    public $options = ['class' => 'sidebar-menu tree', 'data-widget' => 'tree'];
+
     /**
      * @inheritdoc
      */

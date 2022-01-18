@@ -5,8 +5,7 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-\dmstr\adminlte\web\AdminLteAsset::register($this);
-\dmstr\adminlte\web\FontAwesomeAsset::register($this);
+dmstr\web\AdminLteAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

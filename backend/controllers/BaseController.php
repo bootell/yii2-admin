@@ -17,7 +17,6 @@ class BaseController extends Controller
 
     public function init()
     {
-        parent::init();
         // 权限管理
         $this->attachBehaviors([
             'login_access' => [

@@ -9,51 +9,82 @@ use yii\helpers\Url;
 $user = Yii::$app->getUser()->getIdentity();
 ?>
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="/" class="nav-link">前台页面</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">后台管理</a>
-        </li>
-    </ul>
+<header class="main-header">
 
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown user-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <span class="d-none d-md-inline"><?= $user->username ?></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <li class="user-header bg-primary" style="height: auto;">
-                    <p>
-                        <?= $user->username ?>
-                        <small><?= $user->real_name ?> | <?= $user->role->name ?></small>
-                    </p>
-                </li>
-                <li class="user-body">
-                    <div class="row">
-                        <div class="col-6 text-center">
-                            <a href="<?= Url::to(['auth/profile/reset-password']) ?>">修改密码</a>
-                        </div>
-                        <div class="col-6 text-center">
-                            <a href="<?= Url::to(['auth/profile/reset-secret']) ?>">修改两步验证</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="user-footer">
-                    <a href="<?= Url::to(['auth/profile']) ?>" class="btn btn-default btn-flat">个人中心</a>
-                    <?= Html::a(
-                        '注销',
-                        [Url::to(['auth/login/logout'])],
-                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat float-right']
-                    ) ?>
+    <?= Html::a('<span class="logo-mini">B</span><span class="logo-lg">' . Yii::$app->name . '</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+
+    <nav class="navbar navbar-static-top" role="navigation">
+
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <div class="navbar-custom-menu navbar-custom-menu-left">
+            <?= \backend\components\widgets\HeaderMenu::widget(
+                [
+                    'options' => ['class' => 'nav navbar-nav'],
+                    'items' => [
+                        [
+                            'label' => '前台页面',
+                            'prefix' => 'app-frontend',
+                            'icon' => 'television',
+                            'url' => '#',
+                            'items' => [],
+                        ],
+                        [
+                            'label' => '后台管理',
+                            'prefix' => 'app-backend',
+                            'icon' => 'flag-o',
+                            'url' => '#',
+                            'items' => [],
+                        ],
+                    ],
+                ]
+            ) ?>
+        </div>
+
+        <div class="navbar-custom-menu">
+
+            <ul class="nav navbar-nav">
+
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-address-card-o"></i>
+                        <span class="hidden-xs"><?= $user->username ?></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header" style="height: auto;">
+                            <p>
+                                <?= $user->username ?>
+                                <small><?= $user->real_name ?> | <?= $user->role->name ?></small>
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                            <div class="col-xs-6 text-center">
+                                <a href="<?= Url::to(['auth/profile/reset-password']) ?>">修改密码</a>
+                            </div>
+                            <div class="col-xs-6 text-center">
+                                <a href="<?= Url::to(['auth/profile/reset-secret']) ?>">修改两步验证</a>
+                            </div>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="<?= Url::to(['auth/profile']) ?>" class="btn btn-default btn-flat">个人中心</a>
+                            </div>
+                            <div class="pull-right">
+                                <?= Html::a(
+                                    '注销',
+                                    [Url::to(['auth/login/logout'])],
+                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                ) ?>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
-        </li>
-    </ul>
-</nav>
+        </div>
+    </nav>
+</header>
