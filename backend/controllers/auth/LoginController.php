@@ -7,6 +7,7 @@ use backend\models\auth\GoogleAuthenticatorForm;
 use backend\models\admin\AdminLoginLog;
 use backend\models\admin\AdminUsers;
 use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use Yii;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -170,12 +171,12 @@ class LoginController extends BaseController
      */
     public function actionRenderSecret($secret)
     {
-        $google_authenticator = new \PHPGangsta_GoogleAuthenticator();
-        parse_str($google_authenticator->getQRCodeGoogleUrl(Yii::$app->user->identity->username, $secret, Yii::$app->name), $url);
-        $code = new QrCode($url['chl']);
-        $code->setSize(280);
-        header('Content-Type: '.$code->getContentType());
-        echo $code->writeString();
+        $str = 'otpauth://totp/' . Yii::$app->user->identity->username . '?secret=' . $secret . '&issuer=' . Yii::$app->name;
+        $code = QrCode::create($str)
+            ->setSize(280);
+        $writer = new PngWriter();
+        $result = $writer->write($code);
+        echo $result->getString();
         exit();
     }
 

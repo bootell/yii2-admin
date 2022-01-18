@@ -45,7 +45,7 @@ class HeaderMenu extends \dmstr\widgets\Menu
      */
     protected function isItemActive($item)
     {
-        if (isset($item['items']) && strpos(Yii::$app->controller->module->id, $item['prefix']) === 0) {
+        if (isset($item['items']) && str_starts_with(Yii::$app->controller->module->id, $item['prefix'])) {
             return true;
         }
         return false;

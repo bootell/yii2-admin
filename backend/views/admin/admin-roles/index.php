@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'content' => function($model) {
                         // 超级管理员不能编辑
                         if ($model->id == 1) {
-                            return Html::button('系统默认', [
+                            return Html::button('系统角色', [
                                 'class' => 'btn btn-default btn-sm',
                                 'disabled' => 'disabled',
                             ]);
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     // 删除角色
-    $('.delete-button').on('click', function (event) {
+    $('.delete-button').on('click', function () {
         let id = $(this).data('id');
         let name = $(this).data('name');
         swal({
@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 url: '<?= Url::to(['admin/admin-roles/delete']) ?>',
                 contentType: 'application/json',
                 success : function (res) {
-                    if (res.code == 0) {
+                    if (res.code === 0) {
                         swal({title: "成功", text: "", type: "success"}, function (isConfirm) {
                             if (isConfirm) {
                                 location.reload();

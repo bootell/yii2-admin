@@ -4,7 +4,7 @@ namespace backend\components;
 
 use backend\models\auth\AdminRolePermission;
 use Yii;
-use yii\base\InvalidParamException;
+use yii\base\InvalidArgumentException;
 use yii\rbac\CheckAccessInterface;
 
 class RbacAuthManager implements CheckAccessInterface
@@ -66,7 +66,7 @@ class RbacAuthManager implements CheckAccessInterface
         // 带有 * 的路由单独匹配
         foreach ($permissions as $permission) {
             $permission = preg_replace('/\/?\*$/', '', $permission);
-            if (strpos($route, $permission) === 0) {
+            if (str_starts_with($route, $permission)) {
                 return true;
             }
         }
@@ -109,7 +109,7 @@ class RbacAuthManager implements CheckAccessInterface
             foreach ($module['permissions'] as $permission) {
                 $key = $module['label'] . '.' . $permission['label'];
                 if (isset($result[$key])) {
-                    throw new InvalidParamException('duplicate module-key');
+                    throw new InvalidArgumentException('duplicate module-key');
                 } else {
                     $result[$key] = [
                         'key' => $key,

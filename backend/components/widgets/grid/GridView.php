@@ -71,14 +71,11 @@ HTML;
      */
     public function renderSection($name)
     {
-        switch ($name) {
-            case '{page_size}':
-                return $this->renderPageSize();
-            case '{buttons}':
-                return $this->renderButtons();
-            default:
-                return parent::renderSection($name);
-        }
+        return match ($name) {
+            '{page_size}' => $this->renderPageSize(),
+            '{buttons}' => $this->renderButtons(),
+            default => parent::renderSection($name),
+        };
     }
 
     public function renderPageSize()

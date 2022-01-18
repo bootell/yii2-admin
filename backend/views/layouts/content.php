@@ -26,7 +26,7 @@ use backend\components\widgets\Alert;
         <?php endif; ?>
 
         <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            'links' => $this->params['breadcrumbs'] ?? [],
         ]) ?>
     </section>
 
